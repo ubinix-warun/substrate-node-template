@@ -271,8 +271,8 @@ impl pallet_template::Trait for Runtime {
 impl orml_nft::Trait for Runtime {
 	type ClassId = u64;
 	type TokenId = u64;
-	type ClassData = u32;
-	type TokenData = u32;
+	type ClassData = ();
+	type TokenData = ();
 }
 
 // Create the runtime by composing the FRAME pallets that were previously configured.
