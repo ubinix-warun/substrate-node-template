@@ -41,6 +41,7 @@ pub use frame_support::{
 /// Import the template pallet.
 pub use pallet_template;
 
+pub use pallet_mynft;
 pub use orml_nft;
 
 /// An index to a block.
@@ -271,9 +272,14 @@ impl pallet_template::Trait for Runtime {
 impl orml_nft::Trait for Runtime {
 	type ClassId = u64;
 	type TokenId = u64;
-	type ClassData = ();
-	type TokenData = ();
+	type ClassData = u32;
+	type TokenData = u32;
 }
+
+impl pallet_mynft::Trait for Runtime {
+	type Event = Event;
+}
+
 
 // Create the runtime by composing the FRAME pallets that were previously configured.
 construct_runtime!(
@@ -293,6 +299,7 @@ construct_runtime!(
 		NonFungibleToken:orml_nft::{Module,Call,Storage},
 		// Include the custom logic from the template pallet in the runtime.
 		TemplateModule: pallet_template::{Module, Call, Storage, Event<T>},
+		MyNft: pallet_mynft::{Module, Call, Storage, Event<T>},
 	}
 );
 
