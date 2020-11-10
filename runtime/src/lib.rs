@@ -41,6 +41,8 @@ pub use frame_support::{
 /// Import the template pallet.
 pub use pallet_template;
 
+pub use orml_nft;
+
 /// An index to a block.
 pub type BlockNumber = u32;
 
@@ -266,6 +268,13 @@ impl pallet_template::Trait for Runtime {
 	type Event = Event;
 }
 
+impl orml_nft::Trait for Runtime {
+	type ClassId = u64;
+	type TokenId = u64;
+	type ClassData = u32;
+	type TokenData = u32;
+}
+
 // Create the runtime by composing the FRAME pallets that were previously configured.
 construct_runtime!(
 	pub enum Runtime where
@@ -281,6 +290,7 @@ construct_runtime!(
 		Balances: pallet_balances::{Module, Call, Storage, Config<T>, Event<T>},
 		TransactionPayment: pallet_transaction_payment::{Module, Storage},
 		Sudo: pallet_sudo::{Module, Call, Config<T>, Storage, Event<T>},
+		NonFungibleToken:orml_nft::{Module,Call,Storage},
 		// Include the custom logic from the template pallet in the runtime.
 		TemplateModule: pallet_template::{Module, Call, Storage, Event<T>},
 	}
