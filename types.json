@@ -1,0 +1,8 @@
+{
+    "OrderOf": "Order",
+    "OrderId": "u32",
+    "TokenId": "u64",
+    "ClassId": "u64",
+    "ClassData": "u32",
+    "TokenData": "u32"
+}
